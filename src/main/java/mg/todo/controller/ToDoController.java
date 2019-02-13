@@ -19,10 +19,10 @@ public class ToDoController {
 	@Autowired
 	ToDoItemService service;
 
-	// not important any more
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String list(Map<String, Object> map){
 		map.put("toDoItems", service.getAll());
+		map.put("toDoItem", new ToDoItem());
 		return "index";
 	}
 
@@ -44,10 +44,10 @@ public class ToDoController {
 		
 //		return "redirect:/index";
 //		return "index";
-		return "redirect:/combined";
+		return "redirect:/";
 	}
 	
-	// mainView
+	// not needed any more
 	@RequestMapping(value = "/combined", method = RequestMethod.GET)
 	public String combinedView(Map<String, Object> map){
 		map.put("toDoItems", service.getAll());
@@ -59,7 +59,9 @@ public class ToDoController {
 	@RequestMapping(value = "/delete/{toDoItemId}", method = RequestMethod.GET)
 	public String deleteTask(Map<String, Object> map, @PathVariable("toDoItemId") Long toDoItemId){
 		service.delete(toDoItemId);
-		return "redirect:/combined";
+//		return "redirect:/index";
+		return "redirect:/";
+//		return "index";
 	}
 	
 }

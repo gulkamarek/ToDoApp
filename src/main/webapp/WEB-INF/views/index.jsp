@@ -8,33 +8,82 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>To Do</title>
+<title>Insert title here</title>
+<!-- 
+<link href="<c:url value="resources/bootstrap/css/bootstrap.css" />"
+	rel="stylesheet" />
+<script type="text/javascript"
+	  src="<c:url value="resources/bootstrap/js/bootstrap.js" />"></script>
+	
+<link rel='stylesheet' href='webjars/bootstrap/4.2.1/css/bootstrap.min.css'>
+ -->
+<link rel='stylesheet'
+	href="<c:url value='webjars/bootstrap/4.2.1/css/bootstrap.min.css'/>">
+<link href="<c:url value="resources/styleToDo.css" />" rel="stylesheet" />
 </head>
 <body>
+	<center>
+		<h1>To Do</h1>
+		<c:url var="action" value="/create" />
+		
+		<form:form method="post" action="${action}" modelAttribute="toDoItem">
+		<div class="container-fluid">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">
+						<form:input path="name" class="form-control" type="text" placeholder="Title"/>
+					</h4>
+					<p class="card-text">
+						<form:input path="description" class="form-control" type="text" placeholder="Description" />
+					</p>
+					<button type="submit" class="btn btn-primary btn-lg"
+							value="Add Task">Add Task</button>
+				</div>
+			</div>
+		</div>
+		</form:form>
+		
+		<c:if test="${!empty toDoItems}">
+			<!--  BOOTSTRAP CARDS -->
+			<div class="container-fluid">
+				<c:forEach items="${toDoItems}" var="toDoItem">
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">
+								<c:out value="${toDoItem.name}" />
+							</h4>
+							<p class="card-text">
+								<c:out value="${toDoItem.description}" />
+							</p>
+							<button type="button" class="btn btn-warning"
+								onclick="callServlet('20');">
+								<c:out value="${toDoItem.completed}" />
+							</button>
+							<button type="button" class="btn btn-warning"
+								onclick="callServlet('${toDoItem.toDoItemId}');">JS</button>
+							<a class="binIcone" onclick="location.href='/ToDoApp/delete/${toDoItem.toDoItemId}'">
+								<img src="resources/images/bin.png" alt="Delete button">
+							</a>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
 
-	<h1>ToDos</h1>
+		</c:if>
+	</center>
 
-	<spring:url value="/addTask/" var="addTask" />
-	<a href="${addTask}">Add task</a>
+	<script type="text/javascript"
+		src="<c:url value="webjars/jquery/3.3.1/jquery.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="webjars/bootstrap/4.2.1/js/bootstrap.min.js"/>"></script>
 
-	<c:if test="${!empty toDoItems}">
-		<table>
-			<tr>
-				<th>Name</th>
-				<th>Description</th>
-				<th>Completed</th>
-				<th>Settings</th>
-			</tr>
-			<c:forEach items="${toDoItems}" var="toDoItem">
-				<tr>
-					<td><c:out value="${toDoItem.name}" /></td>
-					<td><c:out value="${toDoItem.description}" /></td>
-					<td><c:out value="${toDoItem.completed}" /></td>
-					<td><a>Edit</a> <a>Details</a> <a>Delete</a></td>
+	<script type="text/javascript">
+	function callServlet(somethingForConsole) 
+	{
+    	console.log("Clicked element id=" + somethingForConsole);
+    }
+	</script>
 
-				</tr>
-			</c:forEach>
-		</table>
-	</c:if>
 </body>
+
 </html>

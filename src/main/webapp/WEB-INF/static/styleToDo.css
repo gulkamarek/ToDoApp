@@ -1,0 +1,42 @@
+/* 
+em is 16px 4em is 64px
+bootstrap default padding is 1px
+*/
+@import
+	url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
+
+html, body {
+	height: 100%;
+	width: 100%;
+	font-family: 'Poppins', sans-serif;
+	color: #444;
+	background-color: #4ddbff;
+}
+.binIcone img{
+	width: 33px;
+	border: 1px solid black;
+	padding: 5px;
+	border-radius: 5px;
+}
+.binIcone img:hover{
+	background-color: red;
+}
+.card {
+	background-color: yellow;
+	margin: 10px;
+	width: 30rem;
+	padding: 1px;
+}
+.card-body {
+	padding: 3px;
+}
+.card-title {
+	margin: 3px;
+}
+.card-text {
+	margin: 3px;
+}
+.form-control{
+       background-color:transparent;
+       border:none;
+}
