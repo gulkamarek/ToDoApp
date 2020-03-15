@@ -1,0 +1,6 @@
+# for ignoring changes in tododb.sqlite
+# git update-index --assume-unchanged tododb.sqlite
+# git update-index --no-assume-unchanged [<file> ...]
+/.idea
+*.iml
+target
